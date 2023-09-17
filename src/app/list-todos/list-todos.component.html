@@ -1,0 +1,39 @@
+<h1>My Todo's</h1>
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>description</th>
+                <th>target date</th>
+                <th>completed?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let todo of todos">
+                <td>{{todo.title}}</td>
+                <td>{{todo.description}}</td>
+                <td>{{todo.targetDate | date | lowercase}}</td>
+                <td>{{todo.completed}}</td>
+                <td>
+                    <button (click)="updateTodo(todo.id)" class="btn btn-success">update</button>
+                </td>
+                <td>
+                    <button (click)="deleteTodo(todo.id)" class="btn btn-warning">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div >
+        <button (click)="addTodo()" class="row" class="btn btn-success">Add</button>
+    </div>
+</div>
+
+<br><br><br>
+
+<div class="container" *ngIf="errorMessage">
+    An error has occurred: <br>
+    {{errorMessage}}
+</div>

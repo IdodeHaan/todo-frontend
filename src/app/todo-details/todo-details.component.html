@@ -1,0 +1,42 @@
+<h1>Todo</h1>
+
+<div class="container">
+
+    <form (ngSubmit)="saveTodo()">
+        
+        <fieldset class="form-group">
+            <label>Title</label>
+            <input #focusfield type="text" [(ngModel)]="todo.title" class="form-control" name="title" required="required" autofocus>
+        </fieldset>
+        
+        <fieldset class="form-group">
+            <label>Description</label>
+            <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required="required">
+        </fieldset>
+        
+        <fieldset class="form-group">
+            <label>Target date</label>
+            <input type="date" 
+             [ngModel]="todo.targetDate | date:'yyyy-MM-dd'  " 
+            (ngModelChange)="todo.targetDate = $event"
+            class="form-control" name="targetDate" required="required">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label for="Completed">Completed</label>
+            <br>
+            <input type="checkbox" [(ngModel)]="todo.completed" name="completed">
+        </fieldset>
+    
+        <div class="container" *ngIf="errorMessages">
+            <div *ngFor="let error of errorMessages">
+                <div class="alert alert-warning">{{error}}</div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success">Save</button>
+
+    </form>
+    
+</div>
+
